@@ -42,7 +42,7 @@ namespace MyGradebookList
 
             double sum = grades.Sum();
             double average = sum / grades.Count;
-            Console.WriteLine($"Average grade: {average}");
+            Console.WriteLine($"Average grade is {average}");
 
             Console.ReadLine();
         }
