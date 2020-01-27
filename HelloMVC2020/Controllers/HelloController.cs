@@ -9,7 +9,7 @@ namespace HelloMVC2020.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return Content("Hello World");
+            return Content("<h1>Hello World<h1>");
         }
         public IActionResult Goodbye()
         {
