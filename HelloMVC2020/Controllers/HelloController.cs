@@ -15,10 +15,18 @@ namespace HelloMVC2020.Controllers
             //build form
             string html = "<form method='post'>" +
                 "<input type='text' name='name' />" +
-                "<input type='submit' value='Greet me!' />" +
+                "<select>" +
+                "<option value ='english' selected>English</option>" +
+                "<option value ='french'>French</option>" +
+                "<option value ='spanish'>Spanish</option>" +
+                "<option value ='italian'>Italian</option>" +
+                "<option value ='russian'>Russian</option>" +
+                "<option value ='greek'>Greek</option>" +
+                "</select> " +
+                "<input type='submit' value='Greet me!'/>" +
                 "</form>";
 
-            return Redirect("/Hello/Goodbye");
+            return Content(html, "text/html");
         }
 
         //responds to POST requests
@@ -27,19 +35,22 @@ namespace HelloMVC2020.Controllers
         [HttpPost]
         public IActionResult Display(string name = "World")
         {
-            return Content(string.Format("<h1>Hello, {0}!</h1>", name), "text/html");
-        }
-
-        // Handle requests to /Hello/Melie (URL segment)
-        [Route("/Hello/{name}")]
-        public IActionResult Index2(string name)
-        {
-            return Content(string.Format("<h1>Hello, {0}!</h1>", name), "text/html");
-        }
-
-        public IActionResult Goodbye()
-        {
-            return Content("Goodbye");
+            private static string GetMessage(string lang)
+            {
+                if (lang.Equals("spanish"))
+                {
+                    return "Hola Mundo";
+                }
+                else if (lang.Equals("french"))
+                {
+                    return "Bonjour le monde";
+                }
+                else
+                {
+                    return "Hello World";
+                }
+            }
+            return Content(string.Format("<h1>{0}, {1}!</h1>", , name), "text/html");
         }
     }
 }
