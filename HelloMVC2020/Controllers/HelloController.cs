@@ -15,7 +15,7 @@ namespace HelloMVC2020.Controllers
             //build form
             string html = "<form method='post'>" +
                 "<input type='text' name='name' />" +
-                "<select>" +
+                "<select name='language'>" +
                 "<option value ='english' selected>English</option>" +
                 "<option value ='french'>French</option>" +
                 "<option value ='spanish'>Spanish</option>" +
@@ -33,24 +33,38 @@ namespace HelloMVC2020.Controllers
 
         [Route("/Hello")]
         [HttpPost]
-        public IActionResult Display(string name = "World")
+        public IActionResult Display(string language, string name)
         {
-            private static string GetMessage(string lang)
+            string greeting = GetMessage(language);
+            return Content(string.Format("<h2><em>{0}, {1}!</h2>", greeting, name), "text/html");
+        }
+
+        private static string GetMessage(string lang)
+        {
+            if (lang.Equals("spanish"))
             {
-                if (lang.Equals("spanish"))
-                {
-                    return "Hola Mundo";
-                }
-                else if (lang.Equals("french"))
-                {
-                    return "Bonjour le monde";
-                }
-                else
-                {
-                    return "Hello World";
-                }
+                return "Hola";
             }
-            return Content(string.Format("<h1>{0}, {1}!</h1>", , name), "text/html");
+            else if (lang.Equals("french"))
+            {
+                return "Bonjour";
+            }
+            else if (lang.Equals("russian"))
+            {
+                return "Priviet";
+            }
+            else if (lang.Equals("italian"))
+            {
+                return "Ciao";
+            }
+            else if (lang.Equals("greek"))
+            {
+                return "Yassou";
+            }
+            else
+            {
+                return "Hello";
+            }
         }
     }
 }
