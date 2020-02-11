@@ -35,35 +35,36 @@ namespace HelloMVC2020.Controllers
         [HttpPost]
         public IActionResult Display(string language, string name)
         {
-            string greeting = GetMessage(language);
-            return Content(string.Format("<h2><em>{0}, {1}!</h2>", greeting, name), "text/html");
+            
+            string greeting = CreateMessage(language, name);
+            return Content(string.Format("<h2><em>{0}!</h2>", greeting), "text/html");
         }
 
-        private static string GetMessage(string lang)
+        public static string CreateMessage(string lang, string name)
         {
             if (lang.Equals("spanish"))
             {
-                return "Hola";
+                return "Hola, " + name;
             }
             else if (lang.Equals("french"))
             {
-                return "Bonjour";
+                return "Bonjour, " + name;
             }
             else if (lang.Equals("russian"))
             {
-                return "Priviet";
+                return "Priviet, " + name;
             }
             else if (lang.Equals("italian"))
             {
-                return "Ciao";
+                return "Ciao, " + name;
             }
             else if (lang.Equals("greek"))
             {
-                return "Yassou";
+                return "Yassou, " + name;
             }
             else
             {
-                return "Hello";
+                return "Hello, " + name;
             }
         }
     }
