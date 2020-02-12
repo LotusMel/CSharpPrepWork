@@ -10,7 +10,7 @@ namespace CheeseMVC2020.Controllers
 {
     public class CheeseController : Controller
     {
-        static private List<string> Cheeses = new List<string>();
+        static private Dictionary<string, string> Cheeses = new Dictionary<string, string>();
 
         // GET: /<controller>/
         public IActionResult Index()
@@ -22,17 +22,29 @@ namespace CheeseMVC2020.Controllers
 
         public IActionResult Add()
         {
+            
+
             return View();
         }
 
         [HttpPost]
         [Route("/Cheese/Add")]
-        public IActionResult NewCheese(string name)
+        public IActionResult NewCheese(string name, string describe)
         {
             // Add the new cheese to my existing cheeses
-            Cheeses.Add(name);
 
+            foreach (KeyValuePair<string, string> cheese in Cheeses)
+            {
+                name = cheese.Key;
+                describe = cheese.Value;
+                if (!Cheeses.ContainsKey(cheese.Key))
+                {
+                    Cheeses.Add(name, describe);
+                }
+
+            }
             return Redirect("/Cheese");
+
         }
     }
 }
