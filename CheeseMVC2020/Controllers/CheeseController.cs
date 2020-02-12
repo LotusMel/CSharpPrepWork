@@ -33,16 +33,12 @@ namespace CheeseMVC2020.Controllers
         {
             // Add the new cheese to my existing cheeses
 
-            foreach (KeyValuePair<string, string> cheese in Cheeses)
-            {
-                name = cheese.Key;
-                describe = cheese.Value;
-                if (!Cheeses.ContainsKey(cheese.Key))
-                {
+            
+                
                     Cheeses.Add(name, describe);
-                }
+                
 
-            }
+            
             return Redirect("/Cheese");
 
         }
