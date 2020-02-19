@@ -1,0 +1,15 @@
+﻿@*
+    Layout = null;
+*@
+
+<h1>Remove Cheese</h1>
+
+<form method="post">
+    <select name="name">
+        @foreach ( var cheese in ViewBag.cheeses as Dictionary<string, string>)
+        {
+            <option value="@cheese.Key">@cheese.Key</option> 
+        }
+    </select>
+    <input type="submit" value="Remove Cheese" />
+</form>

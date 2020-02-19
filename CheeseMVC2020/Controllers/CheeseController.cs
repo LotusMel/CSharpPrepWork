@@ -22,8 +22,12 @@ namespace CheeseMVC2020.Controllers
 
         public IActionResult Add()
         {
-            
+            return View();
+        }
 
+        public IActionResult Remove()
+        {
+            ViewBag.cheeses = Cheeses;
             return View();
         }
 
@@ -32,15 +36,20 @@ namespace CheeseMVC2020.Controllers
         public IActionResult NewCheese(string name, string describe)
         {
             // Add the new cheese to my existing cheeses
+            Cheeses.Add(name, describe);
+            return Redirect("/Cheese");
+        }
 
+        [HttpPost]
+        [Route("/Cheese/Remove")]
+        public IActionResult RemoveCheese(string name)
+        {
             
-                
-                    Cheeses.Add(name, describe);
-                
+            Cheeses.Remove(name);
 
-            
             return Redirect("/Cheese");
 
         }
+
     }
 }
