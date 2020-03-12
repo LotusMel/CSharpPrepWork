@@ -1,11 +1,16 @@
-﻿@{
-    Layout = null;
-}
-
-<h1>Add Cheese</h1>
+﻿<h1>Add Cheese</h1>
 
 <form method="post">
-    <label>Cheese<input name="name" type="text"/></label> 
-    <label>Description<input name="describe" type="text"/></label>
+    
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input class="form-control" name ="name" id="name" type="text" />
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input class="form-control" name ="description" id="description" type="text" />
+    </div>
+    
     <input type="submit" value="Add Cheese" />
+
 </form>

@@ -11,12 +11,10 @@ namespace CheeseMVC2020.Controllers
 {
     public class CheeseController : Controller
     {
-        static private List<Cheese> Cheeses = new List<Cheese>();
-
         // GET: /<controller>/
         public IActionResult Index()
         {
-            ViewBag.cheeses = Cheeses;
+            ViewBag.cheeses = CheeseData.GetAll();
 
             return View();
         }
@@ -26,38 +24,35 @@ namespace CheeseMVC2020.Controllers
             return View();
         }
 
-        //public IActionResult Remove()
-        //{
-        //    ViewBag.cheeses = Cheeses;
-        //    return View();
-        //}
 
         [HttpPost]
         [Route("/Cheese/Add")]
-        public IActionResult NewCheese(string name, string describe)
+        public IActionResult NewCheese(Cheese newCheese)
         {
-            Cheese newCheese = new Cheese
-            {
-                Description = describe,
-                Name = name
-            };
-
             // Add the new cheese to my existing cheeses
-            Cheeses.Add(newCheese);
+            CheeseData.Add(newCheese);
 
             return Redirect("/Cheese");
         }
+        
+        public IActionResult Remove()
+        {
+            ViewBag.title = "Remove Cheeses";
+            ViewBag.cheeses = CheeseData.GetAll();
+            return View();
+        }
 
-        //[HttpPost]
+        [HttpPost]
         //[Route("/Cheese/Remove")]
-        //public IActionResult RemoveCheese(string name)
-        //{
+        public IActionResult Remove(int[] cheeseIds)
+        {
+            foreach (int cheeseId in cheeseIds)
+            {
+                CheeseData.Remove(cheeseId);
+            }
             
-        //    Cheeses.Remove(name);
-
-        //    return Redirect("/Cheese");
-
-        //}
+            return Redirect("/");
+        }
 
         //public IActionResult Edit(int cheeseId)
         //{
