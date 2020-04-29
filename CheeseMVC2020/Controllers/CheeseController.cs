@@ -35,6 +35,26 @@ namespace CheeseMVC2020.Controllers
             return Redirect("/Cheese");
         }
         
+
+        public IActionResult Edit(int cheeseId)
+        {
+            ViewBag.cheese = CheeseData.GetById(cheeseId);
+            return View();
+        }
+
+        
+
+        [HttpPost]
+        public IActionResult Edit(int cheeseId, string name, string description)
+        {
+            var cheese = CheeseData.GetById(cheeseId);
+            cheese.Name = name;
+            cheese.Description = description;
+
+
+            return Redirect("/");
+        }
+        
         public IActionResult Remove()
         {
             ViewBag.title = "Remove Cheeses";
@@ -54,16 +74,7 @@ namespace CheeseMVC2020.Controllers
             return Redirect("/");
         }
 
-        //public IActionResult Edit(int cheeseId)
-        //{
-
-        //}
-
-        //[HttpPost]
-        //public IActionResult Edit(int cheeseId, string name, string description)
-        //{
-
-        //}
+        
 
     }
 }
